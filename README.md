@@ -1,6 +1,6 @@
 # GainersAndLosers
 
-TODO: Write a gem description
+This is a library that wraps Yahoo Finance's Market Statistics [pages](http://finance.yahoo.com/)
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+
 
 ## Contributing
 
