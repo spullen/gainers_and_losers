@@ -1,6 +1,6 @@
 module GainersAndLosers
   module MarketMovers
-    class Loser
+    class Losers
     
     end
   end
