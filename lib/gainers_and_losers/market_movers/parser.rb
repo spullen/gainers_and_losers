@@ -1,18 +1,8 @@
 module GainersAndLosers
   module MarketMovers
-    class Parser
+    class Parser < GainersAndLosers::Parser::Base
       
-      attr_reader :entries
-    
-      def initialize(url)
-        @url = url
-      end
-      
-      def entries
-        @entries ||= parse_entries
-      end
-      
-      private
+      protected
       
         def parse_entries
           entries = []
@@ -35,10 +25,6 @@ module GainersAndLosers
           entries
         end
         
-        def document
-          @document ||= Nokogiri::HTML(open(@url))
-        end
-    
     end
   end
 end
