@@ -11,6 +11,6 @@ module GainersAndLosers
     APEX              = 'aq'
     NYSE              = 'nq'
     
-    MARKETS           = %w{US, NASDAQ, APEX, NYSE}
+    MARKETS           = [US, NASDAQ, APEX, NYSE]
   end
 end
