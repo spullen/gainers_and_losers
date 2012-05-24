@@ -1,8 +1,6 @@
 module GainersAndLosers
   module MarketMovers    
     class Gainers < GainersAndLosers::MarketMovers::Parser
-      include GainersAndLosers::Constants
-      
       attr_reader :market
     
       def initialize(market=US)

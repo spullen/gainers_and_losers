@@ -1,6 +1,7 @@
 module GainersAndLosers
   module MarketMovers
     class Parser < GainersAndLosers::Parser::Base
+      include GainersAndLosers::Constants
       
       protected
       
