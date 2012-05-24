@@ -3,7 +3,7 @@ module GainersAndLosers
     class Gainers
       include GainersAndLosers::Constants
       
-      attr_reader :url, :entries
+      attr_reader :url, :market, :entries
     
       def initialize(market=US)
         raise ArgumentError, 'market must be ' + MARKETS.join(', ') unless MARKETS.include?(market)

@@ -1,9 +1,6 @@
 require 'spec_helper'
 
-include GainersAndLosers::Constants
-
 describe GainersAndLosers::MarketMovers::Gainers do
-  
   describe '#url' do
     context 'the default url' do
       it 'should return the correct url' do
