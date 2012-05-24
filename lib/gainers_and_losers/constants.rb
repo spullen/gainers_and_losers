@@ -4,6 +4,8 @@ module GainersAndLosers
     GAINERS_URL         = '/gainers'
     LOSERS_URL          = '/losers'
     ACTIVES_URL         = '/actives'
+    RISING_URL          = '/unusualvolume/rising'
+    FALLING_URL         = '/unusualvolume/falling'
     
     ARGUMENT            = 'e'
     

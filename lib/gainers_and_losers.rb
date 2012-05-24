@@ -16,4 +16,11 @@ module GainersAndLosers
     autoload :Losers,     'gainers_and_losers/market_movers/losers'
     autoload :Actives,    'gainers_and_losers/market_movers/actives'
   end
+  
+  module UnusualVolume
+    autoload :Parser,     'gainers_and_losers/unusual_volume/parser'
+    autoload :Entry,      'gainers_and_losers/unusual_volume/entry'
+    autoload :Rising,     'gainers_and_losers/unusual_volume/rising'
+    autoload :Falling,    'gainers_and_losers/unusual_volume/falling'
+  end
 end
