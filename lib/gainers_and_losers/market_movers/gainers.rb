@@ -1,27 +1,17 @@
 module GainersAndLosers
   module MarketMovers    
-    class Gainers
+    class Gainers < GainersAndLosers::MarketMovers::Parser
       include GainersAndLosers::Constants
       
-      attr_reader :url, :market, :entries
+      attr_reader :market
     
       def initialize(market=US)
         raise ArgumentError, 'market must be ' + MARKETS.join(', ') unless MARKETS.include?(market)
         @market = market
         @url = YAHOO_FINANCE_URL + GAINERS_URL + '?' + ARGUMENT + '=' + @market
+        super(@url)
       end
       
-      def entries
-        @entries ||= get_entries
-      end
-      
-      private
-      
-        def get_entries
-          parser = GainersAndLosers::MarketMovers::Parser.new(@url)
-          parser.entries
-        end
-    
     end
   end
 end

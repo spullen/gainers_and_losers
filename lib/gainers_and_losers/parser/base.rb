@@ -1,7 +1,7 @@
 module GainersAndLosers
   module Parser
     class Base
-      attr_reader :entries
+      attr_reader :url, :entries
     
       def initialize(url)
         @url = url
