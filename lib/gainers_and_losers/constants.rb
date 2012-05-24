@@ -19,5 +19,6 @@ module GainersAndLosers
     YAHOO_FINANCE_API_URL = 'http://query.yahooapis.com/v1/public/yql'
     YAHOO_FINANCE_FORMAT  = 'xml'                                                 # format=xml
     YAHOO_FINANCE_QUERY   = 'select * from yahoo.finance.quotes where symbol in ' # q=select * from yahoo.finance.quotes where symbol in ("intc", "fb", ...)
+    YAHOO_FINANCE_DB      = 'store://datatables.org/alltableswithkeys'
   end
 end

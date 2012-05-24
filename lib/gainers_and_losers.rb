@@ -1,9 +1,12 @@
 require 'nokogiri'
 require 'open-uri'
+require 'net/http'
 
 module GainersAndLosers
-  autoload :Version,    'gainers_and_losers/version'
-  autoload :Constants,  'gainers_and_losers/constants'
+  autoload :Version,      'gainers_and_losers/version'
+  autoload :Constants,    'gainers_and_losers/constants'
+  autoload :Quote,        'gainers_and_losers/quote'
+  autoload :Quotes,       'gainers_and_losers/quotes'
   
   module Parser
     autoload :Base,       'gainers_and_losers/parser/base'
