@@ -17,7 +17,7 @@ module GainersAndLosers
     MARKETS               = [US, NASDAQ, APEX, NYSE]
     
     YAHOO_FINANCE_API_URL = 'http://query.yahooapis.com/v1/public/yql'
-    YAHOO_FINANCE_FORMAT  = 'xml'
-    YAHOO_FINANCE_QUERY   = 'select * from yahoo.finance.quotes where symbol in '
+    YAHOO_FINANCE_FORMAT  = 'xml'                                                 # format=xml
+    YAHOO_FINANCE_QUERY   = 'select * from yahoo.finance.quotes where symbol in ' # q=select * from yahoo.finance.quotes where symbol in ("intc", "fb", ...)
   end
 end
