@@ -14,5 +14,6 @@ module GainersAndLosers
     autoload :Entry,      'gainers_and_losers/market_movers/entry'
     autoload :Gainers,    'gainers_and_losers/market_movers/gainers'
     autoload :Losers,     'gainers_and_losers/market_movers/losers'
+    autoload :Actives,    'gainers_and_losers/market_movers/actives'
   end
 end
