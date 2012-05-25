@@ -85,10 +85,12 @@ module GainersAndLosers
      
      ATTRIBUTES.each do |attribute_key, attribute|
         attr_reader attribute_key
-        
-        define_method(attribute_key) do
-          instance_variable_get "@#{attribute_key}".to_sym
-        end
+
+        self.class_eval <<-RUBY, __FILE__, __LINE__+1
+          def #{attribute_key.to_s}
+            @#{attribute_key.to_s}
+          end
+        RUBY
      end
     
   end

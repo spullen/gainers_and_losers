@@ -93,6 +93,4 @@ describe GainersAndLosers::Quote do
     end
   end
   
-  describe 
-  
 end
