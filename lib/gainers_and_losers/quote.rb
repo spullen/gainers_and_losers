@@ -1,8 +1,6 @@
 module GainersAndLosers
   class Quote
     
-    class_attribute :attributes
-    
     ATTRIBUTES = {
         :ask                                                    => 'Ask',
         :average_daily_volume                                   => 'AverageDailyVolume',
@@ -84,6 +82,14 @@ module GainersAndLosers
         :dividend_yield                                         => 'DividendYield',
         :percent_change                                         => 'PercentChange'
      }
+     
+     ATTRIBUTES.each do |attribute_key, attribute|
+        attr_reader attribute_key
+        
+        define_method(attribute_key) do
+          instance_variable_get "@#{attribute_key}".to_sym
+        end
+     end
     
   end
 end
