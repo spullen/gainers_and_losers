@@ -82,11 +82,17 @@ describe GainersAndLosers::Quote do
                       :dividend_yield => '3.30',
                       :percent_change => '+0.83%' } }
   
-  let!(:xml) { File.open(File.expand_path('../../files/result.xml', __FILE__)) }
-  let!(:result_node) {
-    Nokogiri::XML(xml).xpath('//quote')[0]
-  }
-  let!(:quote) { GainersAndLosers::Quote.new(result_node) }
+  
+  #let!(:quotes) { Nokogiri::XML(File.open(File.expand_path('../../files/results.xml', __FILE__))).xpath('//quote') }
+  #let!(:quote1) { GainersAndLosers::Quote.new(quotes.first) }
+  #let!(:quote2) { GainersAndLosers::Quote.new(quotes.last) }
+  
+  before(:all) do
+    quotes = Nokogiri::XML(File.open(File.expand_path('../../files/results.xml', __FILE__))).xpath('//results/quote')
+    
+    @quote1 = GainersAndLosers::Quote.new(quotes[0])
+    @quote2 = GainersAndLosers::Quote.new(quotes[1])
+  end
   
   describe 'attributes' do
     it 'should have a getter defined for each attribute' do
@@ -96,8 +102,22 @@ describe GainersAndLosers::Quote do
     end
     
     it 'should parse and set the correct value' do
-      expected.each do |attribute, expected|
-        quote.send(attribute).should == expected
+      expected.each do |attribute, expected_val|
+        @quote1.send(attribute).should == expected_val
+      end
+    end
+  end
+  
+  describe '#==' do
+    context 'given two quote entries that are the same' do
+      it 'returns true' do
+        @quote1.should == @quote1
+      end
+    end
+    
+    context 'given two quote entries that are not the same' do
+      it 'returns false' do
+        @quote1.should_not == @quote2
       end
     end
   end

@@ -84,25 +84,32 @@ module GainersAndLosers
         :percent_change                                         => 'PercentChange'
      }
      
-    ATTRIBUTES.each do |attribute_key, attribute|
-      attr_reader attribute_key
+    ATTRIBUTES.keys.each do |attribute|
+      attr_reader attribute
         
-      define_method(attribute_key) do
-        instance_variable_get "@#{attribute_key}".to_sym
+      define_method(attribute) do
+        instance_variable_get "@#{attribute.to_s}".to_sym
       end
     end
      
     def initialize(quote)
       parse_quote_entry(quote)
     end
+    
+    def ==(other)
+      ATTRIBUTES.keys.each do |attribute|
+        return false if self.send(attribute) != other.send(attribute)
+      end
+      return true
+    end
      
     private
      
       def parse_quote_entry(quote)
         ATTRIBUTES.each do |attribute_key, element_key|
-          value = quote.xpath("//" + element_key).pop
+          value = quote.search(element_key)
           value = value.nil? ? '' : value.inner_text
-          instance_variable_set "@#{attribute_key}".to_sym, value
+          self.instance_variable_set "@#{attribute_key}".to_sym, value
         end
       end
     
