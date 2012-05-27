@@ -28,11 +28,12 @@ module GainersAndLosers
         :annualized_gain                                        => 'AnnualizedGain',
         :holdings_gain                                          => 'HoldingsGain',
         :holdings_gain_percent_realtime                         => 'HoldingsGainPercentRealtime',
+        :holdings_gain_realtime                                 => 'HoldingsGainRealtime',
         :more_info                                              => 'MoreInfo',
         :order_book_realtime                                    => 'OrderBookRealtime',
         :market_capitalization                                  => 'MarketCapitalization',
         :market_cap_realtime                                    => 'MarketCapRealtime',
-        :ebitda                                                 => 'EDITDA',
+        :ebitda                                                 => 'EBITDA',
         :change_from_year_low                                   => 'ChangeFromYearLow',
         :percent_change_from_year_low                           => 'PercentChangeFromYearLow',
         :last_trade_realtime_with_time                          => 'LastTradeRealtimeWithTime',
@@ -50,7 +51,7 @@ module GainersAndLosers
         :change_from_two_hundred_day_moving_average             => 'ChangeFromTwoHundreddayMovingAverage',
         :percent_change_from_two_hundred_day_moving_average     => 'PercentChangeFromTwoHundreddayMovingAverage',
         :change_from_fifty_day_moving_average                   => 'ChangeFromFiftydayMovingAverage',
-        :percent_change_from_fifty_day_moving_average           => 'PercentChangeFiftydayMovingAverage',
+        :percent_change_from_fifty_day_moving_average           => 'PercentChangeFromFiftydayMovingAverage',
         :name                                                   => 'Name',
         :notes                                                  => 'Notes',
         :open                                                   => 'Open',
@@ -67,11 +68,11 @@ module GainersAndLosers
         :price_eps_estimate_current_year                        => 'PriceEPSEstimateCurrentYear',
         :price_eps_estimate_next_year                           => 'PriceEPSEstimateNextYear',
         :symbol                                                 => 'Symbol',
-        :shares_owned                                           => 'shares_owned',
-        :short_ratio                                            => 'short_ratio',
+        :shares_owned                                           => 'SharesOwned',
+        :short_ratio                                            => 'ShortRatio',
         :last_trade_time                                        => 'LastTradeTime',
         :ticker_trend                                           => 'TickerTrend',
-        :oneyr_target_price                                     => 'OneryTargetPrice',
+        :one_yr_target_price                                    => 'OneyrTargetPrice',
         :volume                                                 => 'Volume',
         :holdings_value                                         => 'HoldingsValue',
         :holdings_value_realtime                                => 'HoldingsValueRealtime',
@@ -83,13 +84,27 @@ module GainersAndLosers
         :percent_change                                         => 'PercentChange'
      }
      
-     ATTRIBUTES.each do |attribute_key, attribute|
-        attr_reader attribute_key
+    ATTRIBUTES.each do |attribute_key, attribute|
+      attr_reader attribute_key
         
-        define_method(attribute_key) do
-          instance_variable_get "@#{attribute_key}".to_sym
+      define_method(attribute_key) do
+        instance_variable_get "@#{attribute_key}".to_sym
+      end
+    end
+     
+    def initialize(quote)
+      parse_quote_entry(quote)
+    end
+     
+    private
+     
+      def parse_quote_entry(quote)
+        ATTRIBUTES.each do |attribute_key, element_key|
+          value = quote.xpath("//" + element_key).pop
+          value = value.nil? ? '' : value.inner_text
+          instance_variable_set "@#{attribute_key}".to_sym, value
         end
-     end
+      end
     
   end
 end
